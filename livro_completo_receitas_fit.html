@@ -1,0 +1,1462 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<title>Livro Completo de Receitas Fit & Saudáveis</title>
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 12mm 15mm 12mm 15mm;
+    background-color: #faf7f2;
+    @bottom-center {
+      content: "Livro Completo de Receitas • Página " counter(page);
+      font-size: 8pt;
+      font-family: 'Helvetica Neue', Arial, sans-serif;
+      color: #9c8e80;
+    }
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Helvetica Neue', Arial, sans-serif;
+    color: #332d28;
+    background-color: #faf7f2;
+    line-height: 1.4;
+  }
+
+  /* Capa */
+  .cover-page {
+    page-break-after: always;
+    text-align: center;
+    padding-top: 80px;
+  }
+
+  .cover-box {
+    background: linear-gradient(145deg, #3d2c22 0%, #1a120c 100%);
+    border-radius: 18px;
+    padding: 70px 40px;
+    color: #ffffff;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  }
+
+  .cover-box h1 {
+    font-size: 28pt;
+    margin: 0 0 12px 0;
+    color: #f7e6d2;
+    letter-spacing: 1.5px;
+    line-height: 1.2;
+  }
+
+  .cover-box .subtitle {
+    font-size: 13pt;
+    color: #dfcebe;
+    margin-bottom: 25px;
+    font-weight: 300;
+  }
+
+  .cover-box .badge-cover {
+    display: inline-block;
+    background-color: #e07a5f;
+    color: #fff;
+    padding: 8px 24px;
+    border-radius: 20px;
+    font-size: 11pt;
+    font-weight: bold;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+  }
+
+  .cover-box .summary-info {
+    margin-top: 40px;
+    font-size: 9.5pt;
+    color: #b5a292;
+    border-top: 1px solid rgba(255,255,255,0.15);
+    padding-top: 20px;
+    line-height: 1.6;
+  }
+
+  /* Sumário */
+  .toc-page {
+    page-break-after: always;
+    background: #ffffff;
+    border: 1px solid #e8dec8;
+    border-radius: 12px;
+    padding: 24px 28px;
+  }
+
+  .toc-page h2 {
+    color: #3d2c22;
+    border-bottom: 2px solid #e07a5f;
+    padding-bottom: 6px;
+    margin-top: 0;
+    font-size: 16pt;
+  }
+
+  .toc-category {
+    font-size: 10.5pt;
+    font-weight: bold;
+    color: #e07a5f;
+    margin-top: 14px;
+    margin-bottom: 6px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 1px dashed #e8dec8;
+    padding-bottom: 2px;
+  }
+
+  .toc-list {
+    margin: 0 0 10px 0;
+    padding: 0;
+    list-style: none;
+    font-size: 8.8pt;
+    display: table;
+    width: 100%;
+  }
+
+  .toc-item {
+    padding: 2.5px 0;
+    color: #443c35;
+  }
+
+  /* Páginas de Receita */
+  .recipe-page {
+    page-break-after: always;
+  }
+
+  .recipe-page:last-child {
+    page-break-after: avoid;
+  }
+
+  .recipe-card {
+    background: #ffffff;
+    border: 1px solid #e8dec8;
+    border-radius: 12px;
+    padding: 16px 20px;
+    box-shadow: 0 3px 8px rgba(0,0,0,0.03);
+  }
+
+  .recipe-title-bar {
+    border-bottom: 2px solid #e07a5f;
+    padding-bottom: 6px;
+    margin-bottom: 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+  }
+
+  .recipe-title-bar h2 {
+    margin: 0;
+    font-size: 15pt;
+    color: #3d2c22;
+    font-weight: 700;
+  }
+
+  .recipe-title-bar .tag-right {
+    font-size: 8.5pt;
+    color: #8c7a6b;
+    font-weight: bold;
+    background-color: #f4ece1;
+    padding: 2px 8px;
+    border-radius: 12px;
+  }
+
+  .top-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 10px;
+  }
+
+  .top-table td {
+    vertical-align: top;
+  }
+
+  .img-cell {
+    width: 45%;
+    padding-right: 14px;
+  }
+
+  .img-container {
+    width: 100%;
+    height: 225px;
+    border-radius: 8px;
+    overflow: hidden;
+    background-color: #f0eae1;
+    text-align: center;
+  }
+
+  .img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+  }
+
+  .ing-cell {
+    width: 55%;
+    padding-left: 6px;
+  }
+
+  .recipe-layout-2col {
+    display: table;
+    width: 100%;
+  }
+
+  .col-left {
+    display: table-cell;
+    width: 48%;
+    vertical-align: top;
+    padding-right: 16px;
+    border-right: 1px dashed #dfd7cc;
+  }
+
+  .col-right {
+    display: table-cell;
+    width: 52%;
+    vertical-align: top;
+    padding-left: 16px;
+  }
+
+  .section-title {
+    font-size: 9.5pt;
+    text-transform: uppercase;
+    font-weight: bold;
+    color: #e07a5f;
+    letter-spacing: 0.8px;
+    margin-bottom: 6px;
+    border-bottom: 1px solid #f0e6d9;
+    padding-bottom: 2px;
+  }
+
+  .sub-heading {
+    font-size: 8pt;
+    font-weight: bold;
+    color: #7d6e60;
+    margin-top: 6px;
+    margin-bottom: 2px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    background-color: #f7f1eb;
+    padding: 1px 5px;
+    border-radius: 3px;
+  }
+
+  .ingredients-list {
+    margin: 0 0 6px 0;
+    padding: 0;
+    list-style: none;
+    font-size: 8.5pt;
+  }
+
+  .ingredients-list li {
+    padding: 2.5px 0;
+    border-bottom: 1px solid #f6f1eb;
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .ingredients-list li:last-child {
+    border-bottom: none;
+  }
+
+  .ing-name {
+    color: #443c35;
+  }
+
+  .ing-qty {
+    font-weight: 600;
+    color: #8c5836;
+    text-align: right;
+    white-space: nowrap;
+    padding-left: 6px;
+  }
+
+  .prep-section {
+    margin-top: 8px;
+    background-color: #fcfaf7;
+    padding: 10px 12px;
+    border-radius: 8px;
+    border: 1px solid #f2ece1;
+  }
+
+  .steps-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    font-size: 8.6pt;
+  }
+
+  .steps-list li {
+    position: relative;
+    padding-left: 24px;
+    margin-bottom: 7px;
+    line-height: 1.35;
+    color: #3f3933;
+  }
+
+  .steps-list li:last-child {
+    margin-bottom: 0;
+  }
+
+  .step-num {
+    position: absolute;
+    left: 0;
+    top: 1px;
+    background-color: #e07a5f;
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 7.5pt;
+    width: 17px;
+    height: 17px;
+    border-radius: 50%;
+    text-align: center;
+    line-height: 17px;
+  }
+
+  .tips-box {
+    margin-top: 10px;
+    background-color: #fff9f0;
+    border-left: 3px solid #e07a5f;
+    border-radius: 4px;
+    padding: 8px 10px;
+    font-size: 8.2pt;
+    color: #524338;
+  }
+
+  .tips-box strong {
+    color: #a04e38;
+    display: block;
+    margin-bottom: 2px;
+  }
+</style>
+</head>
+<body>
+
+  <!-- CAPA -->
+  <div class="cover-page">
+    <div class="cover-box">
+      <h1>LIVRO COMPLETO DE RECEITAS FIT & SAUDÁVEIS</h1>
+      <div class="subtitle">Traduções, Adaptações Nutricionais, Fotos & Sobremesas Práticas</div>
+      <div class="badge-cover">Compilação Exclusiva Completa</div>
+      
+      <div class="summary-info">
+        • E-book Original "Süße Rezepte" com Fotos em Alta Resolução<br>
+        • Sobremesas Fit, Chocolatadas, Barrinhas Nobres & Sem Forno<br>
+        • Salgados Proteicos, Meal Prep & Pocket Foods para Treinos
+      </div>
+    </div>
+  </div>
+
+  <!-- SUMÁRIO -->
+  <div class="toc-page">
+    <h2>Índice Geral de Receitas</h2>
+    
+    <div class="toc-category">1. E-book Original Alemão (Com Fotos Originais)</div>
+    <div class="toc-list">
+      <div class="toc-item">01. Cheesecake Zebra (Zebra Cheesecake)</div>
+      <div class="toc-item">02. Barrinhas de Coco e Framboesa (Kokos Himbeer Riegel)</div>
+      <div class="toc-item">03. Kinder Pinguí Saudável (Kinder Pingui Fit)</div>
+      <div class="toc-item">04. Pão de Banana Proteico (Protein Banana Bread)</div>
+      <div class="toc-item">05. Barrinhas de Cereja (Cherry Bars)</div>
+      <div class="toc-item">06. Crocante Gelado de Banana (Banana Bark)</div>
+      <div class="toc-item">07. Brownies de Morango (Erdbeer Brownies)</div>
+      <div class="toc-item">08. Croissants de Amêndoa com Papel de Arroz (Mandel Croissants)</div>
+      <div class="toc-item">09. Bocaditos de Brownie e Coco (Coconut Brownie Bites)</div>
+    </div>
+
+    <div class="toc-category">2. Sobremesas, Bolos & Doces Fit</div>
+    <div class="toc-list">
+      <div class="toc-item">10. Pote de Mingau Proteico com Mirtilo e Casquinha Crocante</div>
+      <div class="toc-item">11. Cheesecake de Batata-Doce (Sweet Potato Cheesecake)</div>
+      <div class="toc-item">12. Brookie Proteico Fit (Brownie + Cookie em Camadas)</div>
+      <div class="toc-item">13. Cookie Dough Balls de Cottage e Amendoim (Sem Forno)</div>
+      <div class="toc-item">14. Barra Ouro Branco Saudável (Estilo Bombom)</div>
+      <div class="toc-item">15. Barra Sonho de Valsa Saudável</div>
+      <div class="toc-item">16. Snickers Saudável Caseiro (4 Camadas • 6 Ingredientes)</div>
+      <div class="toc-item">17. Guia de Sabores: Bombons Trufados Fit (Limão, Frutas Vermelhas, Cappuccino...)</div>
+      <div class="toc-item">18. Mousse Aveludada de Chocolate com Couve-Flor</div>
+      <div class="toc-item">19. Brownie Proteico de Batata-Doce (Airfryer / Forno)</div>
+      <div class="toc-item">20. Brownie Fudge com Flor de Sal (Receita Turca 80% Cacau)</div>
+      <div class="toc-item">21. Cookies Crocantes de Chocolate e Aveia (Sem Forno)</div>
+      <div class="toc-item">22. Prestígio Saudável de 3 Ingredientes</div>
+      <div class="toc-item">23. Bocaditos Gelados de Iogurte com Pasta de Amendoim</div>
+      <div class="toc-item">24. Bolo Fofinho de Banana e Chocolate (Cake Moelleux)</div>
+      <div class="toc-item">25. Twix Saudável Caseiro (Biscoito, Caramelo de Tâmara & Chocolate)</div>
+      <div class="toc-item">26. Bocaditos Gelados de Frutas com Iogurte</div>
+      <div class="toc-item">27. Brownie Fudge Invertido com Frutas Vermelhas</div>
+      <div class="toc-item">28. Bolo de Chocolate de Aveia e Água (Sem Ovos, Leite ou Óleo)</div>
+      <div class="toc-item">29. Pote Cremoso de Chocolate com Coração de Amendoim</div>
+      <div class="toc-item">30. Bolinho de Chocolate Fit de Airfryer com Cobertura de Leite em Pó</div>
+    </div>
+
+    <div class="toc-category">3. Salgados Proteicos, Meal Prep & Endurance</div>
+    <div class="toc-list">
+      <div class="toc-item">31. Torta de Tapioca com Frango e Abobrinha (~200 kcal)</div>
+      <div class="toc-item">32. Panqueca Salgada de Forno Proteica (Ofenpfannkuchen)</div>
+      <div class="toc-item">33. Hot Pocket Proteico de Frango Buffalo (50g Proteína)</div>
+      <div class="toc-item">34. Rice Cakes de Baunilha, Mel e Canela (Intra-Treino de Ciclismo)</div>
+      <div class="toc-item">35. Potato Cakes Salgados para Ciclismo (Pocket Food Salgado)</div>
+    </div>
+  </div>
+
+  <!-- ==================== PARTE 1: E-BOOK COM FOTOS ==================== -->
+
+  <!-- 1. Zebra Cheesecake -->
+  <div class="recipe-page">
+    <div class="recipe-card">
+      <div class="recipe-title-bar">
+        <h2>01. Cheesecake Zebra</h2>
+        <span class="tag-right">Foto Original • Süße Rezepte</span>
+      </div>
+      <table class="top-table">
+        <tr>
+          <td class="img-cell"><div class="img-container"><img src="recipe_1.png" alt="Cheesecake Zebra" /></div></td>
+          <td class="ing-cell">
+            <div class="section-title">Ingredientes</div>
+            <ul class="ingredients-list">
+              <li><span class="ing-name">Quark (ou cottage batido/grego)</span><span class="ing-qty">750g</span></li>
+              <li><span class="ing-name">Leite de coco</span><span class="ing-qty">200ml</span></li>
+              <li><span class="ing-name">Ovos</span><span class="ing-qty">5 unid.</span></li>
+              <li><span class="ing-name">Psyllium em casca</span><span class="ing-qty">1 colh. sopa</span></li>
+              <li><span class="ing-name">Baunilha e Sal</span><span class="ing-qty">A gosto / 1 pitada</span></li>
+              <li><span class="ing-name">Mel</span><span class="ing-qty">3 colh. sopa</span></li>
+              <li><span class="ing-name">Cacau em pó + Leite</span><span class="ing-qty">A gosto / 150ml</span></li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+      <div class="prep-section">
+        <div class="section-title">Modo de Preparo</div>
+        <ol class="steps-list">
+          <li><span class="step-num">1</span>Misture o quark, leite de coco e ovos. Adicione os demais ingredientes e deixe hidratar brevemente.</li>
+          <li><span class="step-num">2</span>Divida a massa ao meio e misture o cacau e o leite em uma das metades até formar um creme de chocolate uniforme.</li>
+          <li><span class="step-num">3</span>No centro da forma, alterne 2 a 3 colheres de massa clara e escura. Asse a 160 °C por 60 min. Deixe esfriar no forno com a porta entreaberta.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. Kokos Himbeer Riegel -->
+  <div class="recipe-page">
+    <div class="recipe-card">
+      <div class="recipe-title-bar">
+        <h2>02. Barrinhas de Coco e Framboesa</h2>
+        <span class="tag-right">Foto Original • Süße Rezepte</span>
+      </div>
+      <table class="top-table">
+        <tr>
+          <td class="img-cell"><div class="img-container"><img src="recipe_2.png" alt="Barrinhas de Coco e Framboesa" /></div></td>
+          <td class="ing-cell">
+            <div class="section-title">Ingredientes</div>
+            <div class="sub-heading">Camada de Coco</div>
+            <ul class="ingredients-list">
+              <li><span class="ing-name">Leite de coco + Água de coco</span><span class="ing-qty">50ml + 50ml</span></li>
+              <li><span class="ing-name">Coco ralado</span><span class="ing-qty">100g</span></li>
+              <li><span class="ing-name">Mel + Proteína (opcional)</span><span class="ing-qty">1 colh. / 2 colh.</span></li>
+            </ul>
+            <div class="sub-heading">Framboesa & Cobertura</div>
+            <ul class="ingredients-list">
+              <li><span class="ing-name">Framboesas congeladas</span><span class="ing-qty">200g</span></li>
+              <li><span class="ing-name">Sementes de chia</span><span class="ing-qty">4 colh. sopa</span></li>
+              <li><span class="ing-name">Chocolate amargo derretido</span><span class="ing-qty">Para cobrir</span></li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+      <div class="prep-section">
+        <div class="section-title">Modo de Preparo</div>
+        <ol class="steps-list">
+          <li><span class="step-num">1</span>Misture os ingredientes de coco e espalhe em uma forma 10x20 cm.</li>
+          <li><span class="step-num">2</span>Ferva as framboesas, adicione a chia, deixe hidratar e espalhe por cima do coco.</li>
+          <li><span class="step-num">3</span>Leve ao congelador até firmar e cubra com o chocolate amargo derretido.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. Kinder Pingui -->
+  <div class="recipe-page">
+    <div class="recipe-card">
+      <div class="recipe-title-bar">
+        <h2>03. Kinder Pinguí Saudável</h2>
+        <span class="tag-right">Foto Original • Süße Rezepte</span>
+      </div>
+      <table class="top-table">
+        <tr>
+          <td class="img-cell"><div class="img-container"><img src="recipe_3.png" alt="Kinder Pingui" /></div></td>
+          <td class="ing-cell">
+            <div class="section-title">Ingredientes</div>
+            <div class="sub-heading">Massa</div>
+            <ul class="ingredients-list">
+              <li><span class="ing-name">Proteína chocolate / Cacau</span><span class="ing-qty">25g</span></li>
+              <li><span class="ing-name">Ovo + Farinha de espelta</span><span class="ing-qty">1 unid. / 15g</span></li>
+              <li><span class="ing-name">Leite + Fermento + Mel</span><span class="ing-qty">50ml / 3g / gosto</span></li>
+            </ul>
+            <div class="sub-heading">Recheio e Cobertura</div>
+            <ul class="ingredients-list">
+              <li><span class="ing-name">Skyr + Cream cheese</span><span class="ing-qty">100g + 100g</span></li>
+              <li><span class="ing-name">Cacau + fio de leite + mel</span><span class="ing-qty">A gosto</span></li>
+              <li><span class="ing-name">Chocolate amargo derretido</span><span class="ing-qty">50g</span></li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+      <div class="prep-section">
+        <div class="section-title">Modo de Preparo</div>
+        <ol class="steps-list">
+          <li><span class="step-num">1</span>Misture os ingredientes da massa e asse a 180 °C por 10–15 min; deixe esfriar.</li>
+          <li><span class="step-num">2</span>Monte em camadas: Base → Creme Branco → Camada Choco → Topo.</li>
+          <li><span class="step-num">3</span>Cubra com chocolate amargo e gele até a casquinha endurecer.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. Protein Banana Bread -->
+  <div class="recipe-page">
+    <div class="recipe-card">
+      <div class="recipe-title-bar">
+        <h2>04. Pão de Banana Proteico</h2>
+        <span class="tag-right">Foto Original • Süße Rezepte</span>
+      </div>
+      <table class="top-table">
+        <tr>
+          <td class="img-cell"><div class="img-container"><img src="recipe_4.png" alt="Pão de Banana Proteico" /></div></td>
+          <td class="ing-cell">
+            <div class="section-title">Ingredientes</div>
+            <ul class="ingredients-list">
+              <li><span class="ing-name">Bananas maduras amassadas</span><span class="ing-qty">2 unid.</span></li>
+              <li><span class="ing-name">Azeite de oliva + Pasta avelã</span><span class="ing-qty">40g + 20g</span></li>
+              <li><span class="ing-name">Maple syrup + Ovos</span><span class="ing-qty">80g / 2 unid.</span></li>
+              <li><span class="ing-name">Farinha de aveia / espelta</span><span class="ing-qty">180g</span></li>
+              <li><span class="ing-name">Proteína em pó de banana</span><span class="ing-qty">20g</span></li>
+              <li><span class="ing-name">Cacau cru + Gotas de chocolate</span><span class="ing-qty">2 colh. / a gosto</span></li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+      <div class="prep-section">
+        <div class="section-title">Modo de Preparo</div>
+        <ol class="steps-list">
+          <li><span class="step-num">1</span>Misture as bananas com o azeite, pasta de avelã, xarope, ovos e iogurte.</li>
+          <li><span class="step-num">2</span>Incorpore farinha, proteína, canela, bicarbonato e fermento. Divida a massa em duas e coloque cacau em uma parte.</li>
+          <li><span class="step-num">3</span>Alterne as massas na forma de bolo inglês, decore com gotas de chocolate e asse a 180 °C por 50–60 min.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- 5. Cherry Bars -->
+  <div class="recipe-page">
+    <div class="recipe-card">
+      <div class="recipe-title-bar">
+        <h2>05. Barrinhas de Cereja</h2>
+        <span class="tag-right">Foto Original • Süße Rezepte</span>
+      </div>
+      <table class="top-table">
+        <tr>
+          <td class="img-cell"><div class="img-container"><img src="recipe_5.png" alt="Barrinhas de Cereja" /></div></td>
+          <td class="ing-cell">
+            <div class="section-title">Ingredientes</div>
+            <div class="sub-heading">Base</div>
+            <ul class="ingredients-list">
+              <li><span class="ing-name">Farinha de amêndoa</span><span class="ing-qty">140g</span></li>
+              <li><span class="ing-name">Proteína banana + Cacau</span><span class="ing-qty">2 colh. / 1 colh.</span></li>
+              <li><span class="ing-name">Maple syrup</span><span class="ing-qty">4 colh. sopa</span></li>
+            </ul>
+            <div class="sub-heading">Recheio & Cobertura</div>
+            <ul class="ingredients-list">
+              <li><span class="ing-name">Cerejas frescas trituradas</span><span class="ing-qty">100g</span></li>
+              <li><span class="ing-name">Chia + Psyllium em casca</span><span class="ing-qty">60g / 3 colh.</span></li>
+              <li><span class="ing-name">Chocolate amargo + Sal</span><span class="ing-qty">55g / 1 pitada</span></li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+      <div class="prep-section">
+        <div class="section-title">Modo de Preparo</div>
+        <ol class="steps-list">
+          <li><span class="step-num">1</span>Misture os ingredientes da base e pressione no fundo de uma forma forrada.</li>
+          <li><span class="step-num">2</span>Triture as cerejas com chia e psyllium e espalhe sobre a base.</li>
+          <li><span class="step-num">3</span>Derreta o chocolate com óleo de coco, despeje por cima, adicione flor de sal e gele por 1 hora.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6. Banana Bark -->
+  <div class="recipe-page">
+    <div class="recipe-card">
+      <div class="recipe-title-bar">
+        <h2>06. Crocante Gelado de Banana</h2>
+        <span class="tag-right">Foto Original • Süße Rezepte</span>
+      </div>
+      <table class="top-table">
+        <tr>
+          <td class="img-cell"><div class="img-container"><img src="recipe_6.png" alt="Banana Bark" /></div></td>
+          <td class="ing-cell">
+            <div class="section-title">Ingredientes</div>
+            <ul class="ingredients-list">
+              <li><span class="ing-name">Bananas em rodelas</span><span class="ing-qty">2 unid.</span></li>
+              <li><span class="ing-name">Pasta de amendoim integral</span><span class="ing-qty">4 colh. sopa</span></li>
+              <li><span class="ing-name">Chocolate amargo</span><span class="ing-qty">80g</span></li>
+              <li><span class="ing-name">Óleo de coco</span><span class="ing-qty">1 colh. chá</span></li>
+              <li><span class="ing-name">Amendoins picados</span><span class="ing-qty">1 punhado</span></li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+      <div class="prep-section">
+        <div class="section-title">Modo de Preparo</div>
+        <ol class="steps-list">
+          <li><span class="step-num">1</span>Disponha rodelas de banana lado a lado sobre papel-manteiga.</li>
+          <li><span class="step-num">2</span>Espalhe a pasta de amendoim e cubra com o chocolate derretido com óleo de coco.</li>
+          <li><span class="step-num">3</span>Salpique amendoins picados e congele por 1 hora antes de quebrar em pedaços.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7. Erdbeer Brownies -->
+  <div class="recipe-page">
+    <div class="recipe-card">
+      <div class="recipe-title-bar">
+        <h2>07. Brownies de Morango</h2>
+        <span class="tag-right">Foto Original • Süße Rezepte</span>
+      </div>
+      <table class="top-table">
+        <tr>
+          <td class="img-cell"><div class="img-container"><img src="recipe_7.png" alt="Brownies de Morango" /></div></td>
+          <td class="ing-cell">
+            <div class="section-title">Ingredientes</div>
+            <ul class="ingredients-list">
+              <li><span class="ing-name">Adoçante líquido / Chicória</span><span class="ing-qty">80ml</span></li>
+              <li><span class="ing-name">Óleo de coco + Pasta avelã</span><span class="ing-qty">50ml + 30ml</span></li>
+              <li><span class="ing-name">Leite + Ovo</span><span class="ing-qty">300ml / 1 unid.</span></li>
+              <li><span class="ing-name">Farinha de espelta / sarraceno</span><span class="ing-qty">100g</span></li>
+              <li><span class="ing-name">Proteína cacau + Cacau pó</span><span class="ing-qty">20g + 30g</span></li>
+              <li><span class="ing-name">Morangos + Gotas chocolate</span><span class="ing-qty">150g / 1 punhado</span></li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+      <div class="prep-section">
+        <div class="section-title">Modo de Preparo</div>
+        <ol class="steps-list">
+          <li><span class="step-num">1</span>Misture os líquidos: adoçante, óleo de coco, pasta de avelã, leite e ovo.</li>
+          <li><span class="step-num">2</span>Incorpore a farinha, a proteína em pó, o cacau e o fermento até obter massa lisa.</li>
+          <li><span class="step-num">3</span>Coloque na forma, cubra com os morangos picados e gotas de chocolate e asse a 180 °C por 25 min.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8. Mandel Croissants -->
+  <div class="recipe-page">
+    <div class="recipe-card">
+      <div class="recipe-title-bar">
+        <h2>08. Croissants de Amêndoa</h2>
+        <span class="tag-right">Foto Original • Süße Rezepte</span>
+      </div>
+      <table class="top-table">
+        <tr>
+          <td class="img-cell"><div class="img-container"><img src="recipe_8.png" alt="Croissants de Amêndoa" /></div></td>
+          <td class="ing-cell">
+            <div class="section-title">Ingredientes</div>
+            <div class="sub-heading">Envoltório</div>
+            <ul class="ingredients-list">
+              <li><span class="ing-name">Papel de arroz</span><span class="ing-qty">6 folhas</span></li>
+              <li><span class="ing-name">Ovos + Óleo de coco + Mel</span><span class="ing-qty">2 ovos / 1 colh.</span></li>
+              <li><span class="ing-name">Amêndoas laminadas</span><span class="ing-qty">A gosto</span></li>
+            </ul>
+            <div class="sub-heading">Recheio</div>
+            <ul class="ingredients-list">
+              <li><span class="ing-name">Ovo + Mel</span><span class="ing-qty">1 unid. / 2 colh.</span></li>
+              <li><span class="ing-name">Farinha de amêndoa</span><span class="ing-qty">½ xícara</span></li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+      <div class="prep-section">
+        <div class="section-title">Modo de Preparo</div>
+        <ol class="steps-list">
+          <li><span class="step-num">1</span>Misture o recheio. Em outro prato raso, misture os ovos com óleo de coco e mel.</li>
+          <li><span class="step-num">2</span>Mergulhe o papel de arroz na mistura de ovos, recheie, enrole como croissant e cubra com amêndoas.</li>
+          <li><span class="step-num">3</span>Asse na Airfryer a 180 °C por 10 min até dourar.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9. Coconut Brownie Bites -->
+  <div class="recipe-page">
+    <div class="recipe-card">
+      <div class="recipe-title-bar">
+        <h2>09. Bocaditos de Brownie e Coco</h2>
+        <span class="tag-right">Foto Original • Süße Rezepte</span>
+      </div>
+      <table class="top-table">
+        <tr>
+          <td class="img-cell"><div class="img-container"><img src="recipe_9.png" alt="Bocaditos de Brownie e Coco" /></div></td>
+          <td class="ing-cell">
+            <div class="section-title">Ingredientes</div>
+            <div class="sub-heading">Brownie</div>
+            <ul class="ingredients-list">
+              <li><span class="ing-name">Bananas maduras</span><span class="ing-qty">3 unid.</span></li>
+              <li><span class="ing-name">Proteína cacau + Cacau cru</span><span class="ing-qty">1 colh. cada</span></li>
+              <li><span class="ing-name">Leite de coco</span><span class="ing-qty">200ml</span></li>
+            </ul>
+            <div class="sub-heading">Coco & Cobertura</div>
+            <ul class="ingredients-list">
+              <li><span class="ing-name">Iogurte coco + Coco ralado</span><span class="ing-qty">4 colh. / 2 colh.</span></li>
+              <li><span class="ing-name">Psyllium + Chocolate amargo</span><span class="ing-qty">½ colh. / 200g</span></li>
+            </ul>
+          </td>
+        </tr>
+      </table>
+      <div class="prep-section">
+        <div class="section-title">Modo de Preparo</div>
+        <ol class="steps-list">
+          <li><span class="step-num">1</span>Bata os ingredientes do brownie e despeje em uma forma forrada.</li>
+          <li><span class="step-num">2</span>Misture os ingredientes de coco, deixe hidratar por 10 min e espalhe sobre o brownie.</li>
+          <li><span class="step-num">3</span>Congele por 3-4 horas, corte em cubos e banhe no chocolate derretido.</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== PARTE 2: DOCES & SOBREMESAS FIT ==================== -->
+
+  <!-- 10. Mingau Proteico Mirtilo -->
+  <div class="recipe-page">
+    <div class="recipe-card">
+      <div class="recipe-title-bar">
+        <h2>10. Pote de Mingau Proteico de Mirtilo</h2>
+        <span class="tag-right">Casquinha Crocante • No-Bake</span>
+      </div>
+      <div class="recipe-layout-2col">
+        <div class="col-left">
+          <div class="section-title">Ingredientes</div>
+          <div class="sub-heading">Base do Mingau</div>
+          <ul class="ingredients-list">
+            <li><span class="ing-name">Aveia em flocos ou farinha</span><span class="ing-qty">40g</span></li>
+            <li><span class="ing-name">Proteína vegetal de baunilha</span><span class="ing-qty">25g</span></li>
+            <li><span class="ing-name">Água ou leite vegetal</span><span class="ing-qty">~200ml</span></li>
+            <li><span class="ing-name">Mirtilos cozidos no micro-ondas</span><span class="ing-qty">~150g</span></li>
+          </ul>
+          <div class="sub-heading">Cobertura Crocante</div>
+          <ul class="ingredients-list">
+            <li><span class="ing-name">Chocolate amargo vegano derretido</span><span class="ing-qty">q.b.</span></li>
+            <li><span class="ing-name">Crunch Orbs / Cereal proteico</span><span class="ing-qty">1 a 2 colh.</span></li>
+          </ul>
+        </div>
+        <div class="col-right">
+          <div class="section-title">Modo de Preparo</div>
+          <ol class="steps-list">
+            <li><span class="step-num">1</span>Cozinhe os mirtilos no micro-ondas até liberarem bastante suco.</li>
+            <li><span class="step-num">2</span>Misture a aveia, proteína e leite com a maior parte dos mirtilos (bata no mixer se preferir liso). Transfira para um pote de vidro.</li>
+            <li><span class="step-num">3</span>Misture o chocolate derretido com o cereal crocante, espalhe uma camada fina sobre o mingau e leve à geladeira até formar a casquinha.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 11. Cheesecake Batata Doce -->
+  <div class="recipe-page">
+    <div class="recipe-card">
+      <div class="recipe-title-bar">
+        <h2>11. Cheesecake de Batata-Doce</h2>
+        <span class="tag-right">Sweet Potato Cheesecake</span>
+      </div>
+      <div class="recipe-layout-2col">
+        <div class="col-left">
+          <div class="section-title">Ingredientes</div>
+          <ul class="ingredients-list">
+            <li><span class="ing-name">Purê de batata-doce assada</span><span class="ing-qty">400g</span></li>
+            <li><span class="ing-name">Ovos grandes</span><span class="ing-qty">4 unid.</span></li>
+            <li><span class="ing-name">Mel cru</span><span class="ing-qty">100g</span></li>
+            <li><span class="ing-name">Cream cheese</span><span class="ing-qty">250g</span></li>
+            <li><span class="ing-name">Extrato de baunilha + Sal marinho</span><span class="ing-qty">1 colh. / pitada</span></li>
+            <li><span class="ing-name">Mel e pólen de abelha (opcional)</span><span class="ing-qty">Para finalizar</span></li>
+          </ul>
+        </div>
+        <div class="col-right">
+          <div class="section-title">Modo de Preparo</div>
+          <ol class="steps-list">
+            <li><span class="step-num">1</span>Bata no processador o purê de batata-doce, ovos, cream cheese, mel, baunilha e sal até obter um creme sedoso.</li>
+            <li><span class="step-num">2</span>Despeje em forma 18x18 cm forrada e asse a 170 °C por 50–60 min (bordas firmes, centro levemente trêmulo).</li>
+            <li><span class="step-num">3</span>Deixe esfriar dentro do forno desligado com porta entreaberta e gele por 6 horas antes de cortar.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 12. Brookie Proteico Fit -->
+  <div class="recipe-page">
+    <div class="recipe-card">
+      <div class="recipe-title-bar">
+        <h2>12. Brookie Proteico Fit</h2>
+        <span class="tag-right">Brownie + Cookie em Camadas</span>
+      </div>
+      <div class="recipe-layout-2col">
+        <div class="col-left">
+          <div class="section-title">Ingredientes</div>
+          <div class="sub-heading">Cookie & Brownie</div>
+          <ul class="ingredients-list">
+            <li><span class="ing-name">Iogurte grego desnatado</span><span class="ing-qty">42,5g (cookie) / 85g (brownie)</span></li>
+            <li><span class="ing-name">Farinha de trigo</span><span class="ing-qty">15g (cookie) / 120g (brownie)</span></li>
+            <li><span class="ing-name">Proteína em pó (Baunilha / Choc)</span><span class="ing-qty">⅓ scoop / 1 scoop + 1 caseína</span></li>
+            <li><span class="ing-name">Adoçante granulado culinário</span><span class="ing-qty">36g / 96g</span></li>
+            <li><span class="ing-name">Leite de amêndoas + Ovo</span><span class="ing-qty">240ml / 1 unid.</span></li>
+            <li><span class="ing-name">Cacau 100% + Gotas chocolate</span><span class="ing-qty">30g / 21g</span></li>
+          </ul>
+        </div>
+        <div class="col-right">
+          <div class="section-title">Modo de Preparo</div>
+          <ol class="steps-list">
+            <li><span class="step-num">1</span>Misture os ingredientes do cookie até formar massa firme. Reserve.</li>
+            <li><span class="step-num">2</span>Misture os secos e líquidos do brownie e despeje em uma forma de bolo inglês.</li>
+            <li><span class="step-num">3</span>Distribua pedaços da massa de cookie por cima, salpique gotas de chocolate e asse a 175 °C por 50–55 min.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 13. Cookie Dough Balls Cottage -->
+  <div class="recipe-page">
+    <div class="recipe-card">
+      <div class="recipe-title-bar">
+        <h2>13. Cookie Dough Balls de Cottage</h2>
+        <span class="tag-right">Snack Sem Forno • No-Bake</span>
+      </div>
+      <div class="recipe-layout-2col">
+        <div class="col-left">
+          <div class="section-title">Ingredientes</div>
+          <ul class="ingredients-list">
+            <li><span class="ing-name">Queijo Cottage</span><span class="ing-qty">100g</span></li>
+            <li><span class="ing-name">Banana madura</span><span class="ing-qty">1 unid.</span></li>
+            <li><span class="ing-name">Extrato de baunilha</span><span class="ing-qty">1 colh. chá</span></li>
+            <li><span class="ing-name">Farinha de amêndoa</span><span class="ing-qty">200g</span></li>
+            <li><span class="ing-name">Pasta de amendoim</span><span class="ing-qty">3 colh. sopa</span></li>
+            <li><span class="ing-name">Gotas de chocolate</span><span class="ing-qty">A gosto</span></li>
+          </ul>
+        </div>
+        <div class="col-right">
+          <div class="section-title">Modo de Preparo</div>
+          <ol class="steps-list">
+            <li><span class="step-num">1</span>Bata no mixer o cottage com a banana, pasta de amendoim e baunilha.</li>
+            <li><span class="step-num">2</span>Adicione a farinha de amêndoa até formar massa modelável e incorpore as gotas de chocolate.</li>
+            <li><span class="step-num">3</span>Faça bolinhas e leve à geladeira por 20–30 minutos para firmar.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 14 & 15. Barras Ouro Branco e Sonho de Valsa -->
+  <div class="recipe-page">
+    <div class="recipe-card" style="margin-bottom: 12px;">
+      <div class="recipe-title-bar">
+        <h2>14. Barra Ouro Branco Saudável</h2>
+        <span class="tag-right">Vegano • Sem Forno</span>
+      </div>
+      <div class="recipe-layout-2col">
+        <div class="col-left">
+          <div class="section-title">Ingredientes</div>
+          <ul class="ingredients-list">
+            <li><span class="ing-name">Tâmaras sem caroço</span><span class="ing-qty">120g</span></li>
+            <li><span class="ing-name">Cacau 100% + Pasta amendoim</span><span class="ing-qty">20g + 60g</span></li>
+            <li><span class="ing-name">Chocolate branco vegano + Quinoa pops</span><span class="ing-qty">~100g + 25g</span></li>
+          </ul>
+        </div>
+        <div class="col-right">
+          <div class="section-title">Modo de Preparo</div>
+          <ol class="steps-list">
+            <li><span class="step-num">1</span>Processe tâmaras, cacau e pasta de amendoim e espalhe sobre papel-manteiga.</li>
+            <li><span class="step-num">2</span>Derreta o chocolate branco com quinoa pops, cubra a base e congele por 2h.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card">
+      <div class="recipe-title-bar">
+        <h2>15. Barra Sonho de Valsa Saudável</h2>
+        <span class="tag-right">Vegano • Sem Forno</span>
+      </div>
+      <div class="recipe-layout-2col">
+        <div class="col-left">
+          <div class="section-title">Ingredientes</div>
+          <ul class="ingredients-list">
+            <li><span class="ing-name">Tâmaras sem caroço</span><span class="ing-qty">120g</span></li>
+            <li><span class="ing-name">Amendoim torrado + Pasta de caju</span><span class="ing-qty">40g + 60g</span></li>
+            <li><span class="ing-name">Chocolate amargo vegano derretido</span><span class="ing-qty">Para cobrir</span></li>
+          </ul>
+        </div>
+        <div class="col-right">
+          <div class="section-title">Modo de Preparo</div>
+          <ol class="steps-list">
+            <li><span class="step-num">1</span>Processe as tâmaras com amendoim e pasta de caju até virar massa moldável.</li>
+            <li><span class="step-num">2</span>Abra a massa, cubra com chocolate amargo derretido e congele por 2h.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 16. Snickers Saudavel -->
+  <div class="recipe-page">
+    <div class="recipe-card">
+      <div class="recipe-title-bar">
+        <h2>16. Snickers Saudável Caseiro</h2>
+        <span class="tag-right">4 Camadas • 6 Ingredientes</span>
+      </div>
+      <div class="recipe-layout-2col">
+        <div class="col-left">
+          <div class="section-title">Ingredientes</div>
+          <div class="sub-heading">Base Nougat</div>
+          <ul class="ingredients-list">
+            <li><span class="ing-name">Castanhas-de-caju + Creme de coco</span><span class="ing-qty">130g + 240g</span></li>
+            <li><span class="ing-name">Maple syrup + Flor de sal</span><span class="ing-qty">3 colh. + 1 pitada</span></li>
+          </ul>
+          <div class="sub-heading">Caramelo & Cobertura</div>
+          <ul class="ingredients-list">
+            <li><span class="ing-name">Pasta de amendoim + Maple syrup</span><span class="ing-qty">260g + 3 colh.</span></li>
+            <li><span class="ing-name">Amendoins + Chocolate amargo 70%</span><span class="ing-qty">A gosto / Para banhar</span></li>
+          </ul>
+        </div>
+        <div class="col-right">
+          <div class="section-title">Modo de Preparo</div>
+          <ol class="steps-list">
+            <li><span class="step-num">1</span>Bata os ingredientes da base no liquidificador, despeje na forma e congele.</li>
+            <li><span class="step-num">2</span>Misture o caramelo, espalhe por cima da base, salpique amendoins e volte ao freezer.</li>
+            <li><span class="step-num">3</span>Corte em barrinhas, banhe no chocolate 70% e finalize com flor de sal.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 17. Guia de Sabores Bombons Trufados -->
+  <div class="recipe-page">
+    <div class="recipe-card">
+      <div class="recipe-title-bar">
+        <h2>17. Bombons Trufados Fit (Guia de Sabores)</h2>
+        <span class="tag-right">Sem Lactose • Sem Açúcar</span>
+      </div>
+      <div class="recipe-layout-2col">
+        <div class="col-left">
+          <div class="section-title">Base Padrão da Massa</div>
+          <ul class="ingredients-list">
+            <li><span class="ing-name">Leite em pó vegetal (coco/soja)</span><span class="ing-qty">2 xícaras</span></li>
+            <li><span class="ing-name">Óleo de coco + Adoçante</span><span class="ing-qty">1 colh. sopa / A gosto</span></li>
+            <li><span class="ing-name">Chocolate 70% ou branco vegano</span><span class="ing-qty">180g (banho)</span></li>
+          </ul>
+          <div class="sub-heading">Sabores para Adicionar à Base</div>
+          <ul class="ingredients-list">
+            <li><span class="ing-name">Maracujá: 1 colh. suco + 1½ colh. polpa</span><span class="ing-qty">Cítrico</span></li>
+            <li><span class="ing-name">Limão: 2 colh. suco + raspas da casca</span><span class="ing-qty">Torta Limão</span></li>
+            <li><span class="ing-name">Sensação: 2 colh. geleia s/ açúcar</span><span class="ing-qty">Frutas Verm.</span></li>
+          </ul>
+        </div>
+        <div class="col-right">
+          <div class="sub-heading">Mais Variações & Preparo</div>
+          <ul class="ingredients-list">
+            <li><span class="ing-name">Cappuccino: 1 colh. café solúvel + canela</span><span class="ing-qty">Energético</span></li>
+            <li><span class="ing-name">Prestígio: 3 colh. coco ralado + leite coco</span><span class="ing-qty">Coco Intenso</span></li>
+            <li><span class="ing-name">Pistache: 2 colh. pasta pura + pistache picado</span><span class="ing-qty">Gourmet</span></li>
+          </ul>
+          <div class="prep-section" style="margin-top: 6px;">
+            <ol class="steps-list">
+              <li><span class="step-num">1</span>Misture o leite vegetal em pó, óleo de coco, adoçante e o sabor escolhido até virar massinha.</li>
+              <li><span class="step-num">2</span>Modele trufas, congele por 15 min e banhe no chocolate 70% derretido.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 18 & 19: Couve-flor e Brownie Batata Doce -->
+  <div class="recipe-page">
+    <div class="recipe-card" style="margin-bottom: 12px;">
+      <div class="recipe-title-bar">
+        <h2>18. Mousse de Chocolate com Couve-Flor</h2>
+        <span class="tag-right">2 Ingredientes Principais</span>
+      </div>
+      <div class="recipe-layout-2col">
+        <div class="col-left">
+          <div class="section-title">Ingredientes</div>
+          <ul class="ingredients-list">
+            <li><span class="ing-name">Couve-flor cozida no vapor (bem macia)</span><span class="ing-qty">2 xícaras</span></li>
+            <li><span class="ing-name">Chocolate 50% derretido</span><span class="ing-qty">200g</span></li>
+            <li><span class="ing-name">Adoçante ou mel (opcional)</span><span class="ing-qty">A gosto</span></li>
+          </ul>
+        </div>
+        <div class="col-right">
+          <div class="section-title">Modo de Preparo</div>
+          <ol class="steps-list">
+            <li><span class="step-num">1</span>Escorra bem a couve-flor e bata no processador com o chocolate derretido até virar creme aveludado. Gele por 2h.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card">
+      <div class="recipe-title-bar">
+        <h2>19. Brownie Proteico de Batata-Doce</h2>
+        <span class="tag-right">Airfryer / Forno (15 min)</span>
+      </div>
+      <div class="recipe-layout-2col">
+        <div class="col-left">
+          <div class="section-title">Ingredientes</div>
+          <ul class="ingredients-list">
+            <li><span class="ing-name">Batata-doce cozida macia</span><span class="ing-qty">200g</span></li>
+            <li><span class="ing-name">Ovo médio + Água</span><span class="ing-qty">1 unid. / 100ml</span></li>
+            <li><span class="ing-name">Proteína em pó + Cacau 100%</span><span class="ing-qty">50g + 30g</span></li>
+            <li><span class="ing-name">Gotas de chocolate</span><span class="ing-qty">10g</span></li>
+          </ul>
+        </div>
+        <div class="col-right">
+          <div class="section-title">Modo de Preparo</div>
+          <ol class="steps-list">
+            <li><span class="step-num">1</span>Bata no mixer a batata, ovo, proteína, cacau e água.</li>
+            <li><span class="step-num">2</span>Despeje na forma, cubra com gotas de chocolate e asse na Airfryer a 180 °C por 15 min.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 20 & 21: Brownie Turco e Cookies Sem Forno -->
+  <div class="recipe-page">
+    <div class="recipe-card" style="margin-bottom: 12px;">
+      <div class="recipe-title-bar">
+        <h2>20. Brownie Fudge com Flor de Sal</h2>
+        <span class="tag-right">Receita Turca • 80% Cacau</span>
+      </div>
+      <div class="recipe-layout-2col">
+        <div class="col-left">
+          <div class="section-title">Ingredientes</div>
+          <ul class="ingredients-list">
+            <li><span class="ing-name">Chocolate 80% + Manteiga</span><span class="ing-qty">220g + 200g</span></li>
+            <li><span class="ing-name">Ovos + Açúcar de coco</span><span class="ing-qty">3 unid. / 170g</span></li>
+            <li><span class="ing-name">Farinha espelta + Cacau 100%</span><span class="ing-qty">80g + 40g</span></li>
+            <li><span class="ing-name">Flor de sal</span><span class="ing-qty">8g</span></li>
+          </ul>
+        </div>
+        <div class="col-right">
+          <div class="section-title">Modo de Preparo</div>
+          <ol class="steps-list">
+            <li><span class="step-num">1</span>Derreta manteiga com chocolate; misture açúcar e sal.</li>
+            <li><span class="step-num">2</span>Adicione os ovos um a um e incorpore a farinha e cacau. Asse a 175 °C por 22 min.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card">
+      <div class="recipe-title-bar">
+        <h2>21. Cookies Crocantes de Chocolate e Aveia</h2>
+        <span class="tag-right">Sem Forno • Sem Farinha</span>
+      </div>
+      <div class="recipe-layout-2col">
+        <div class="col-left">
+          <div class="section-title">Ingredientes</div>
+          <ul class="ingredients-list">
+            <li><span class="ing-name">Aveia + Quinoa pops</span><span class="ing-qty">80g + 30g</span></li>
+            <li><span class="ing-name">Noz-pecã + Frutas secas + Canela</span><span class="ing-qty">100g + 50g + gosto</span></li>
+            <li><span class="ing-name">Chocolate amargo + Pasta amendoim</span><span class="ing-qty">150g + 60g</span></li>
+          </ul>
+        </div>
+        <div class="col-right">
+          <div class="section-title">Modo de Preparo</div>
+          <ol class="steps-list">
+            <li><span class="step-num">1</span>Toste aveia, quinoa, nozes e frutas na frigideira.</li>
+            <li><span class="step-num">2</span>Misture com chocolate e pasta de amendoim derretidos, modele discos e gele.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 22 & 23: Prestigio e Bocaditos Iogurte -->
+  <div class="recipe-page">
+    <div class="recipe-card" style="margin-bottom: 12px;">
+      <div class="recipe-title-bar">
+        <h2>22. Prestígio Saudável de 3 Ingredientes</h2>
+        <span class="tag-right">Prático • Sem Forno</span>
+      </div>
+      <div class="recipe-layout-2col">
+        <div class="col-left">
+          <div class="section-title">Ingredientes</div>
+          <ul class="ingredients-list">
+            <li><span class="ing-name">Coco ralado sem açúcar</span><span class="ing-qty">125g</span></li>
+            <li><span class="ing-name">Iogurte natural consistente</span><span class="ing-qty">170g (1 pote)</span></li>
+            <li><span class="ing-name">Chocolate para cobertura</span><span class="ing-qty">~150g</span></li>
+          </ul>
+        </div>
+        <div class="col-right">
+          <div class="section-title">Modo de Preparo</div>
+          <ol class="steps-list">
+            <li><span class="step-num">1</span>Misture coco e iogurte até dar ponto. Modele barrinhas, congele por 20 min e banhe no chocolate derretido.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card">
+      <div class="recipe-title-bar">
+        <h2>23. Bocaditos Gelados de Iogurte e Amendoim</h2>
+        <span class="tag-right">Snack Proteico Gelado</span>
+      </div>
+      <div class="recipe-layout-2col">
+        <div class="col-left">
+          <div class="section-title">Ingredientes</div>
+          <ul class="ingredients-list">
+            <li><span class="ing-name">Iogurte grego natural</span><span class="ing-qty">1 xícara</span></li>
+            <li><span class="ing-name">Pasta de amendoim integral</span><span class="ing-qty">½ xícara</span></li>
+            <li><span class="ing-name">Mel ou adoçante + Chocolate 70%</span><span class="ing-qty">⅓ xícara / ~120g</span></li>
+          </ul>
+        </div>
+        <div class="col-right">
+          <div class="section-title">Modo de Preparo</div>
+          <ol class="steps-list">
+            <li><span class="step-num">1</span>Misture iogurte, pasta de amendoim e mel. Faça discos, congele por 1h e cubra com chocolate 70%.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 24 & 25: Cake Moelleux e Twix -->
+  <div class="recipe-page">
+    <div class="recipe-card" style="margin-bottom: 12px;">
+      <div class="recipe-title-bar">
+        <h2>24. Bolo Fofinho de Banana e Chocolate</h2>
+        <span class="tag-right">Cake Moelleux • 110 kcal/fatia</span>
+      </div>
+      <div class="recipe-layout-2col">
+        <div class="col-left">
+          <div class="section-title">Ingredientes</div>
+          <ul class="ingredients-list">
+            <li><span class="ing-name">Banana amassada + Ovo</span><span class="ing-qty">1 unid. / 1 unid.</span></li>
+            <li><span class="ing-name">Skyr baunilha + Petit-suisse</span><span class="ing-qty">140g + 50g</span></li>
+            <li><span class="ing-name">Farinha de trigo + Leite</span><span class="ing-qty">150g / 40ml</span></li>
+            <li><span class="ing-name">Fermento + Chocolate picado</span><span class="ing-qty">1 colh. / 30g</span></li>
+          </ul>
+        </div>
+        <div class="col-right">
+          <div class="section-title">Modo de Preparo</div>
+          <ol class="steps-list">
+            <li><span class="step-num">1</span>Misture tudo na ordem, coloque em forma de 23 cm, decore com chocolate e asse a 180 °C por 25–30 min.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card">
+      <div class="recipe-title-bar">
+        <h2>25. Twix Saudável Caseiro</h2>
+        <span class="tag-right">3 Camadas • Biscoito e Caramelo</span>
+      </div>
+      <div class="recipe-layout-2col">
+        <div class="col-left">
+          <div class="section-title">Ingredientes</div>
+          <ul class="ingredients-list">
+            <li><span class="ing-name">Aveia + Farinha amêndoa</span><span class="ing-qty">1 xícara + ½ xícara</span></li>
+            <li><span class="ing-name">Ovo + Mel/Agave</span><span class="ing-qty">1 unid. + ½ xícara</span></li>
+            <li><span class="ing-name">Tâmaras jumbo s/ caroço</span><span class="ing-qty">500g (caramelo)</span></li>
+            <li><span class="ing-name">Chocolate 70% + Flor de sal</span><span class="ing-qty">100g + pitada</span></li>
+          </ul>
+        </div>
+        <div class="col-right">
+          <div class="section-title">Modo de Preparo</div>
+          <ol class="steps-list">
+            <li><span class="step-num">1</span>Misture a base e asse a 180 °C por 5–10 min.</li>
+            <li><span class="step-num">2</span>Bata as tâmaras em purê, espalhe sobre a base, cubra com chocolate e flor de sal e gele.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 26, 27 & 28 -->
+  <div class="recipe-page">
+    <div class="recipe-card" style="margin-bottom: 10px;">
+      <div class="recipe-title-bar">
+        <h2>26. Bocaditos Gelados de Frutas com Iogurte</h2>
+        <span class="tag-right">Refrescante • Sem Forno</span>
+      </div>
+      <div class="recipe-layout-2col">
+        <div class="col-left">
+          <div class="section-title">Ingredientes</div>
+          <ul class="ingredients-list">
+            <li><span class="ing-name">Banana e Morangos picados</span><span class="ing-qty">A gosto</span></li>
+            <li><span class="ing-name">Iogurte grego + Pasta de amendoim</span><span class="ing-qty">3 colh. + 1 colh.</span></li>
+            <li><span class="ing-name">Chocolate amargo derretido</span><span class="ing-qty">Para regar</span></li>
+          </ul>
+        </div>
+        <div class="col-right">
+          <div class="section-title">Modo de Preparo</div>
+          <ol class="steps-list">
+            <li><span class="step-num">1</span>Misture as frutas com o iogurte, faça montinhos, coloque pasta de amendoim e chocolate e congele por 1h.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card" style="margin-bottom: 10px;">
+      <div class="recipe-title-bar">
+        <h2>27. Brownie Fudge Invertido com Frutas Vermelhas</h2>
+        <span class="tag-right">Sem Forno • Sem Farinha</span>
+      </div>
+      <div class="recipe-layout-2col">
+        <div class="col-left">
+          <div class="section-title">Ingredientes</div>
+          <ul class="ingredients-list">
+            <li><span class="ing-name">Bananas + Cacau 100%</span><span class="ing-qty">2 unid. + 1 colh.</span></li>
+            <li><span class="ing-name">Chocolate amargo derretido</span><span class="ing-qty">4 colh. sopa</span></li>
+            <li><span class="ing-name">Morangos, framboesas e mirtilos</span><span class="ing-qty">Para o fundo</span></li>
+          </ul>
+        </div>
+        <div class="col-right">
+          <div class="section-title">Modo de Preparo</div>
+          <ol class="steps-list">
+            <li><span class="step-num">1</span>Forre a forma com filme e cubra o fundo com as frutas. Bata a banana com cacau e chocolate, despeje por cima e congele. Desenforme invertido.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card">
+      <div class="recipe-title-bar">
+        <h2>28. Bolo de Chocolate de Aveia e Água</h2>
+        <span class="tag-right">Sem Ovos • Sem Leite • Sem Óleo</span>
+      </div>
+      <div class="recipe-layout-2col">
+        <div class="col-left">
+          <div class="section-title">Ingredientes</div>
+          <ul class="ingredients-list">
+            <li><span class="ing-name">Farinha aveia + Cacau 100%</span><span class="ing-qty">150g + 50g</span></li>
+            <li><span class="ing-name">Adoçante + Fermento</span><span class="ing-qty">80g + 1 colh.</span></li>
+            <li><span class="ing-name">Água morna/quente</span><span class="ing-qty">210 a 250ml</span></li>
+          </ul>
+        </div>
+        <div class="col-right">
+          <div class="section-title">Modo de Preparo</div>
+          <ol class="steps-list">
+            <li><span class="step-num">1</span>Misture os secos, adicione a água morna até virar creme e asse a 180 °C por 20–25 min.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 29 & 30 -->
+  <div class="recipe-page">
+    <div class="recipe-card" style="margin-bottom: 12px;">
+      <div class="recipe-title-bar">
+        <h2>29. Pote Cremoso com Coração de Amendoim</h2>
+        <span class="tag-right">Mousse Proteica Sem Forno</span>
+      </div>
+      <div class="recipe-layout-2col">
+        <div class="col-left">
+          <div class="section-title">Ingredientes</div>
+          <ul class="ingredients-list">
+            <li><span class="ing-name">Iogurte grego/natural</span><span class="ing-qty">200g</span></li>
+            <li><span class="ing-name">Cacau 100% + Proteína chocolate</span><span class="ing-qty">15g + 1 scoop</span></li>
+            <li><span class="ing-name">Pasta de amendoim (centro)</span><span class="ing-qty">1 colh. sopa</span></li>
+            <li><span class="ing-name">Amendoim picado + Chocolate</span><span class="ing-qty">Para decorar</span></li>
+          </ul>
+        </div>
+        <div class="col-right">
+          <div class="section-title">Modo de Preparo</div>
+          <ol class="steps-list">
+            <li><span class="step-num">1</span>Misture iogurte, cacau e proteína. Coloque metade no pote, adicione a pasta de amendoim no centro, cubra com o restante e gele por 30 min.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card">
+      <div class="recipe-title-bar">
+        <h2>30. Bolinho de Chocolate de Airfryer</h2>
+        <span class="tag-right">Pronto em 8 min • Individual</span>
+      </div>
+      <div class="recipe-layout-2col">
+        <div class="col-left">
+          <div class="section-title">Ingredientes</div>
+          <ul class="ingredients-list">
+            <li><span class="ing-name">Ovo + Leite desnatado</span><span class="ing-qty">1 unid. + 30ml</span></li>
+            <li><span class="ing-name">Cacau 100% + Farinha aveia/arroz</span><span class="ing-qty">20g + 20g</span></li>
+            <li><span class="ing-name">Fermento + Choc. meio amargo</span><span class="ing-qty">1 colh. + 10g</span></li>
+            <li><span class="ing-name">Leite em pó desnatado (cobertura)</span><span class="ing-qty">15g + gotas leite</span></li>
+          </ul>
+        </div>
+        <div class="col-right">
+          <div class="section-title">Modo de Preparo</div>
+          <ol class="steps-list">
+            <li><span class="step-num">1</span>Misture a massa, adicione o chocolate no centro e asse na Airfryer a 180 °C por 8 min. Cubra com o creme de leite em pó.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== PARTE 3: SALGADOS, MEAL PREP & ENDURANCE ==================== -->
+
+  <!-- 31. Torta Tapioca Frango -->
+  <div class="recipe-page">
+    <div class="recipe-card">
+      <div class="recipe-title-bar">
+        <h2>31. Torta de Tapioca com Frango e Abobrinha</h2>
+        <span class="tag-right">~200 kcal/porção • Meal Prep</span>
+      </div>
+      <div class="recipe-layout-2col">
+        <div class="col-left">
+          <div class="section-title">Ingredientes</div>
+          <ul class="ingredients-list">
+            <li><span class="ing-name">Ovos inteiros</span><span class="ing-qty">4 unid.</span></li>
+            <li><span class="ing-name">Goma de tapioca</span><span class="ing-qty">150g</span></li>
+            <li><span class="ing-name">Requeijão light</span><span class="ing-qty">80g</span></li>
+            <li><span class="ing-name">Frango desfiado temperado</span><span class="ing-qty">300g</span></li>
+            <li><span class="ing-name">Abobrinha ralada + Azeitonas</span><span class="ing-qty">100g + 30g</span></li>
+            <li><span class="ing-name">Fermento + Muçarela + Orégano</span><span class="ing-qty">1 colh. / 3 fatias</span></li>
+          </ul>
+        </div>
+        <div class="col-right">
+          <div class="section-title">Modo de Preparo</div>
+          <ol class="steps-list">
+            <li><span class="step-num">1</span>Bata os ovos com tapioca, requeijão, temperos e abobrinha.</li>
+            <li><span class="step-num">2</span>Incorpore o frango, azeitonas e fermento.</li>
+            <li><span class="step-num">3</span>Coloque em forma de silicone, cubra com muçarela e orégano e asse a 180 °C por 20 min.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 32. Panqueca Salgada Forno -->
+  <div class="recipe-page">
+    <div class="recipe-card">
+      <div class="recipe-title-bar">
+        <h2>32. Panqueca Salgada de Forno</h2>
+        <span class="tag-right">Herzhafter Ofenpfannkuchen</span>
+      </div>
+      <div class="recipe-layout-2col">
+        <div class="col-left">
+          <div class="section-title">Ingredientes</div>
+          <div class="sub-heading">Massa</div>
+          <ul class="ingredients-list">
+            <li><span class="ing-name">Ovos + Farinha trigo</span><span class="ing-qty">4 unid. + 150g</span></li>
+            <li><span class="ing-name">Quark (ou cottage/grego)</span><span class="ing-qty">150g</span></li>
+            <li><span class="ing-name">Leite + Pitada de sal</span><span class="ing-qty">~200ml + 1 pitada</span></li>
+          </ul>
+          <div class="sub-heading">Cobertura</div>
+          <ul class="ingredients-list">
+            <li><span class="ing-name">Presunto picado + Muçarela</span><span class="ing-qty">200g + 200g</span></li>
+            <li><span class="ing-name">Cebolinha picada + Pimenta</span><span class="ing-qty">1 punhado + gosto</span></li>
+          </ul>
+        </div>
+        <div class="col-right">
+          <div class="section-title">Modo de Preparo</div>
+          <ol class="steps-list">
+            <li><span class="step-num">1</span>Misture os ingredientes da massa até homogeneizar e despeje em assadeira forrada com papel-manteiga.</li>
+            <li><span class="step-num">2</span>Espalhe o presunto, cebolinha e muçarela por cima.</li>
+            <li><span class="step-num">3</span>Asse a 170 °C (convecção) ou 190 °C por 20–25 min até inflar e gratinar.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 33. Hot Pocket Proteico Buffalo -->
+  <div class="recipe-page">
+    <div class="recipe-card">
+      <div class="recipe-title-bar">
+        <h2>33. Hot Pocket Proteico de Frango Buffalo</h2>
+        <span class="tag-right">50g Proteína / unidade</span>
+      </div>
+      <div class="recipe-layout-2col">
+        <div class="col-left">
+          <div class="section-title">Ingredientes</div>
+          <div class="sub-heading">Massa & Recheio</div>
+          <ul class="ingredients-list">
+            <li><span class="ing-name">Farinha c/ fermento + Iogurte 0%</span><span class="ing-qty">500g + 520g</span></li>
+            <li><span class="ing-name">Peito de frango cozido desfiado</span><span class="ing-qty">1135g</span></li>
+            <li><span class="ing-name">Cottage + Cream cheese light</span><span class="ing-qty">335g + 56g</span></li>
+            <li><span class="ing-name">Molho Buffalo + Muçarela 0%</span><span class="ing-qty">240g + 392g</span></li>
+          </ul>
+        </div>
+        <div class="col-right">
+          <div class="section-title">Modo de Preparo</div>
+          <ol class="steps-list">
+            <li><span class="step-num">1</span>Bata o molho proteico (cottage, cream cheese, buffalo e temperos). Misture com o frango e muçarela.</li>
+            <li><span class="step-num">2</span>Abra a massa de iogurte, recheie, feche os hot pockets e asse a 190 °C por 15–20 min.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 34 & 35: Endurance Rice Cakes e Potato Cakes -->
+  <div class="recipe-page">
+    <div class="recipe-card" style="margin-bottom: 12px;">
+      <div class="recipe-title-bar">
+        <h2>34. Rice Cakes de Baunilha e Mel</h2>
+        <span class="tag-right">Intra-Treino de Ciclismo (35g CHO)</span>
+      </div>
+      <div class="recipe-layout-2col">
+        <div class="col-left">
+          <div class="section-title">Ingredientes</div>
+          <ul class="ingredients-list">
+            <li><span class="ing-name">Arroz cru grão curto</span><span class="ing-qty">¾ xícara (105g CHO)</span></li>
+            <li><span class="ing-name">Mel cru + Maple syrup</span><span class="ing-qty">1½ colh. + 1 colh.</span></li>
+            <li><span class="ing-name">Óleo coco + Baunilha + Canela</span><span class="ing-qty">1 colh. chá + gosto</span></li>
+          </ul>
+        </div>
+        <div class="col-right">
+          <div class="section-title">Modo de Preparo</div>
+          <ol class="steps-list">
+            <li><span class="step-num">1</span>Cozinhe o arroz até ficar bem empapado/grudento. Misture com mel, maple e canela.</li>
+            <li><span class="step-num">2</span>Pressione na forma, gele, corte em 4 blocos e embale em papel alumínio.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+
+    <div class="recipe-card">
+      <div class="recipe-title-bar">
+        <h2>35. Potato Cakes Salgados para Ciclismo</h2>
+        <span class="tag-right">Pocket Food Salgado (40g CHO)</span>
+      </div>
+      <div class="recipe-layout-2col">
+        <div class="col-left">
+          <div class="section-title">Ingredientes</div>
+          <ul class="ingredients-list">
+            <li><span class="ing-name">Batata inglesa cozida</span><span class="ing-qty">800g (150g CHO)</span></li>
+            <li><span class="ing-name">Maple syrup + Suco de limão</span><span class="ing-qty">1 colh. sopa cada</span></li>
+            <li><span class="ing-name">Sal</span><span class="ing-qty">3 boas pitadas</span></li>
+          </ul>
+        </div>
+        <div class="col-right">
+          <div class="section-title">Modo de Preparo</div>
+          <ol class="steps-list">
+            <li><span class="step-num">1</span>Amasse a batata cozida bem quente até formar purê liso. Misture maple, limão e sal.</li>
+            <li><span class="step-num">2</span>Compacte na forma, resfrie na geladeira e corte em 4 barras individuais para o pedal.</li>
+          </ol>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
